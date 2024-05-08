@@ -40,7 +40,8 @@ class CasesController extends Controller
             'case_document' => ['required', 'file', 'mimes:pdf,doc,docx'],
         ]);
 
-        $documentPath = $request->file('case_document')->store('documents');
+        $documentPath = $request->case_document->store('documents');
+
 
         $data = Cases::create([
             'case_type' => $request->case_type,
@@ -48,7 +49,7 @@ class CasesController extends Controller
             'client_name' => $request->client_name,
             'client_contact' => $request->client_contact,
             'case_deadline' => $request->case_deadline,
-            'case_document' => $document,
+            'case_document' => $documentPath,
             'user_id' => auth()->user()->id,
         ]);
         return redirect()->back()->with('success', 'Document Uploaded Successfully.');
@@ -59,7 +60,8 @@ class CasesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $case = Cases::findorfail($id);
+        return view('cases.show', compact('case'));
     }
 
     /**
