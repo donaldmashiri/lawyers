@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CasesController extends Controller
 {
@@ -11,7 +13,9 @@ class CasesController extends Controller
      */
     public function index()
     {
-        return view('cases.index');
+        $cases = Cases::where('user_id', auth()->user()->id)->get();
+        return view('cases.index', compact('cases'));
+
     }
 
     /**
@@ -19,7 +23,7 @@ class CasesController extends Controller
      */
     public function create()
     {
-        //
+        return view('cases.create');
     }
 
     /**
@@ -27,7 +31,27 @@ class CasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'case_type' => ['required'],
+            'case_description' => ['required'],
+            'client_name' => ['required'],
+            'client_contact' => ['required'],
+            'case_deadline' => ['required', 'date'],
+            'case_document' => ['required', 'file', 'mimes:pdf,doc,docx'],
+        ]);
+
+        $documentPath = $request->file('case_document')->store('documents');
+
+        $data = Cases::create([
+            'case_type' => $request->case_type,
+            'case_description' => $request->case_description,
+            'client_name' => $request->client_name,
+            'client_contact' => $request->client_contact,
+            'case_deadline' => $request->case_deadline,
+            'case_document' => $document,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Document Uploaded Successfully.');
     }
 
     /**

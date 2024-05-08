@@ -4,6 +4,17 @@
 
         <!-- Name -->
         <div>
+            <x-input-label for="name" :value="__('Select User Type')" />
+            <select name="user_type" id="" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" >
+                <option value="">Lawyer or Customer</option>
+                <option value="lawyer">Lawyer</option>
+                <option value="customer">Customer</option>
+            </select>
+            <x-input-error :messages="$errors->get('user_type')" class="mt-2" />
+        </div>
+
+
+        <div class="mt-4">
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
