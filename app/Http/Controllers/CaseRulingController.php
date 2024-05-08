@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseRuling;
+use App\Models\Cases;
 use Illuminate\Http\Request;
 
 class CaseRulingController extends Controller
@@ -28,7 +29,25 @@ class CaseRulingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cases_id' => ['required'],
+            'case_ruling' => ['required'],
+            'case_results' => ['required']
+        ]);
+
+        $data = CaseRuling::create([
+            'cases_id' => $request->cases_id,
+            'case_ruling' => $request->case_ruling,
+            'case_results' => $request->case_results,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        $case = Cases::findOrFail($request->cases_id);
+        $case->case_status = "auctioned";
+        $case->save();
+
+        return redirect()->back()->with('success', 'Case Ruling Added Successfully.');
+
     }
 
     /**

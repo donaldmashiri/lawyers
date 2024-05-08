@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CaseRuling;
 use App\Models\Cases;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -61,7 +62,8 @@ class CasesController extends Controller
     public function show(string $id)
     {
         $case = Cases::findorfail($id);
-        return view('cases.show', compact('case'));
+        $caseRulings = CaseRuling::where('cases_id', $id)->get();
+        return view('cases.show', compact('case', 'caseRulings'));
     }
 
     /**

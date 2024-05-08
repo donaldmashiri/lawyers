@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('case_rulings', function (Blueprint $table) {
             $table->id();
+            $table->integer('cases_id');
+            $table->text('case_ruling');
+            $table->string('case_results');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

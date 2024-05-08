@@ -10,6 +10,7 @@
     </x-slot>
 
     <div class="py-12">
+        @include('layouts.messages')
         <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
