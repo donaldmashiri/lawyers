@@ -72,13 +72,9 @@
                         </table>
                     @else
 
-                        <h4 class="p-2 font-semibold text-xl text-white bg-red-600 leading-tight">No Case Ruling Done</h4>
+                        <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-200 leading-tight">No Case Ruling Done</h4>
 
                     @endif
-
-
-
-
 
                 </div>
             </div>
@@ -89,8 +85,34 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <h2 class="p-3 font-semibold text-xl text-gray-800 bg-gray-50 leading-tight">
-                            <i class="bi bi-link"></i>Related Cases
+                            <i class="bi bi-link"></i> Related Cases
                         </h2>
+
+                        @if($caseResearches->count()>0)
+
+                            <table class="w-full table table-bordered text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-2 py-1">Case#</th>
+                                    <th scope="col" class="px-2 py-1">Type</th>
+                                    <th scope="col" class="px-2 py-1">Description</th>
+                                    <th scope="col" class="px-2 py-1">Ruling</th>
+                                </thead>
+                                <tbody>
+                                @foreach($caseResearches as $caseResearch)
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td class="px-2 py-1">CS00{{$caseResearch->id}}</td>
+                                        <td class="px-2 py-1">{{$caseResearch->case_type}}</td>
+                                        <td class="px-2 py-1">{!! $caseResearch->case_description  !!}</td>
+                                        <td class="px-2 py-1">{{$caseResearch->caseRulings->case_result}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <h4 class="p-2 font-semibold text-xl text-white bg-red-600 leading-tight">No Related Cases Found</h4>
+                        @endif
+
 
                     </div>
                 </div>

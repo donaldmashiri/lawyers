@@ -63,7 +63,13 @@ class CasesController extends Controller
     {
         $case = Cases::findorfail($id);
         $caseRulings = CaseRuling::where('cases_id', $id)->get();
-        return view('cases.show', compact('case', 'caseRulings'));
+        $caseResearches = Cases::where('id', '!=', $id)
+            ->where(function ($query) use ($case) {
+                $query->where('case_type', 'LIKE', '%' . $case->case_type . '%')
+                    ->orWhere('case_description', 'LIKE', '%' . $case->case_description . '%');
+            })
+            ->get();
+        return view('cases.show', compact('case', 'caseRulings', 'caseResearches'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\OpenAIService;
 use Illuminate\Http\Request;
 
 class MessagingController extends Controller
@@ -9,9 +10,19 @@ class MessagingController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $openai;
+
+    public function __construct()
+    {
+        $this->openai = new OpenAIService(env('OPENAI_API_KEY'));
+    }
+
     public function index()
     {
-        return view('messaging.index');
+        $prompt = 'Hello';
+        $response = $this->openai->generateText($prompt);
+
+        return response()->json(['response' => $response]);
     }
 
     /**

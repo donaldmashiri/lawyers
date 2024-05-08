@@ -15,4 +15,9 @@ class CaseRuling extends Model
         'case_results',
         'user_id',
     ];
+
+    public function case()
+    {
+        return $this->belongsTo(Cases::class, 'cases_id');
+    }
 }

@@ -19,4 +19,9 @@ class Cases extends Model
         'user_id',
     ];
 
+    public function caseRulings()
+    {
+        return $this->hasMany(CaseRuling::class, 'cases_id');
+    }
+
 }
