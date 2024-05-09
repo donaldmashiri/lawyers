@@ -17,7 +17,7 @@
                         <h2>{{ __('Electronic lawyers System') }}</h2>
                     </x-nav-link>
 
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 mt-2">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                         <li class="me-2">
                             <a href="{{ route('cases.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
                                 <i class="bi bi-briefcase"> Cases </i>

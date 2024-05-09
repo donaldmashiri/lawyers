@@ -53,7 +53,7 @@ class CasesController extends Controller
             'case_document' => $documentPath,
             'user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Document Uploaded Successfully.');
+        return redirect()->back()->with('success', 'Case Added Successfully.');
     }
 
     /**

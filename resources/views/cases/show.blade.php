@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <i class="bi bi-briefcase"></i>Show Case CS00{{$case->id}}
+            <i class="bi bi-briefcase"></i> Show Case CS00{{$case->id}}
             <a href="{{route('cases.index')}}"
                class="py-2 px-4 text-dark text-sm float-right font-semibold rounded-lg border border-grey-200 bg-grey-700">
                 <i class="bi bi-arrow-left"></i> back
@@ -39,9 +39,10 @@
                         </tbody>
                     </table>
                 </div>
+                <hr>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-3">
-                    <h4 class="p-2 font-semibold text-xl text-gray-800 bg-gray-50 leading-tight">
+                    <h4 class="p-2 font-semibold text-xl text-gray-800 bg-gray-400 leading-tight">
                         <i class="bi bi-folder"></i> Cases Ruling
                         <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                            class="p-1 text-white text-sm float-right font-semibold rounded-sm border border-grey-200 bg-blue-400">
@@ -64,32 +65,35 @@
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <td class="px-2 py-1">CS00{{$caseRuling->cases_id}}</td>
                                         <td class="px-2 py-1">{!! $caseRuling->case_ruling  !!}</td>
-                                        <td class="px-2 py-1">{{$caseRuling->case_results}}</td>
+                                        <td class="px-2 py-1">
+                                            @if($case->case_results == 'pass')
+                                                <p class="text-green-600 font-bold">{{$caseRuling->case_results}}</p>
+                                            @else
+                                                <p class="text-green-600">{{$caseRuling->case_results}}</p>
+                                            @endif
+
+                                        </td>
                                         <td class="px-2 py-1">{{$caseRuling->created_at}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     @else
-
-                        <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-200 leading-tight">No Case Ruling Done</h4>
-
+                        <h4 class="p-2 font-semibold text-sm text-white text-center bg-red-600 leading-tight">No Case Ruling Done</h4>
                     @endif
-
                 </div>
             </div>
         </div>
 
         <div class="py-3">
-            <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
+            <div class="max-w-7xl mx-auto sm:px-3 lg:px-3 mt-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <h2 class="p-3 font-semibold text-xl text-gray-800 bg-gray-50 leading-tight">
+                        <h4 class="p-2 font-semibold text-xl text-gray-800 bg-gray-400 leading-tight">
                             <i class="bi bi-link"></i> Related Cases
-                        </h2>
+                        </h4>
 
                         @if($caseResearches->count()>0)
-
                             <table class="w-full table table-bordered text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -110,10 +114,8 @@
                                 </tbody>
                             </table>
                         @else
-                            <h4 class="p-2 font-semibold text-xl text-white bg-red-600 leading-tight">No Related Cases Found</h4>
+                            <h4 class="p-2 font-semibold text-sm text-center text-white bg-red-600 leading-tight">No Related Cases Found</h4>
                         @endif
-
-
                     </div>
                 </div>
             </div>

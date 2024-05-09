@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use OpenAI\Laravel\Facades\OpenAI;
+
 
 class NewsController extends Controller
 {
@@ -11,7 +13,15 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index');
+//        $result = OpenAI::chat()->create([
+//            'model' => 'gpt-3.5-turbo',
+//            'messages' => [
+//                ['role' => 'user', 'content' => 'Hello!'],
+//            ],
+//        ]);
+//
+//      return  $result->choices[0]->message->content;
+//        return view('news.index');
     }
 
     /**
