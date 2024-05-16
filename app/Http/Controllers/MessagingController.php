@@ -19,10 +19,10 @@ class MessagingController extends Controller
 
     public function index()
     {
-        $prompt = 'Hello';
-        $response = $this->openai->generateText($prompt);
-
-        return response()->json(['response' => $response]);
+//        $prompt = 'Hello';
+//        $response = $this->openai->generateText($prompt);
+//
+//        return response()->json(['response' => $response]);
     }
 
     /**

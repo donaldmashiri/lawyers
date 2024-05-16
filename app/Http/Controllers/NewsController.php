@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
+use App\Models\News;
 use Illuminate\Http\Request;
 use OpenAI\Laravel\Facades\OpenAI;
 
@@ -21,7 +23,7 @@ class NewsController extends Controller
 //        ]);
 //
 //      return  $result->choices[0]->message->content;
-//        return view('news.index');
+        return view('news.index');
     }
 
     /**
@@ -29,7 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
@@ -37,7 +39,19 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'news_type' => ['required'],
+            'title' => ['required'],
+            'summary' => ['required'],
+        ]);
+
+        $data = News::create([
+            'news_type' => $request->news_type,
+            'title' => $request->title,
+            'summary' => $request->summary,
+        ]);
+        return redirect()->back()->with('success', 'News Added Successfully.');
+
     }
 
     /**

@@ -108,7 +108,11 @@
                                         <td class="px-2 py-1">CS00{{$caseResearch->id}}</td>
                                         <td class="px-2 py-1">{{$caseResearch->case_type}}</td>
                                         <td class="px-2 py-1">{!! $caseResearch->case_description  !!}</td>
-                                        <td class="px-2 py-1">{{$caseResearch->caseRulings->case_result}}</td>
+                                        <td class="px-2 py-1">
+                                            @foreach($caseResearch->caseRulings as $caseRuling)
+                                                {{$caseRuling->case_results}}
+                                            @endforeach
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
