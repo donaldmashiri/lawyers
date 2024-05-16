@@ -1,41 +1,48 @@
 <x-app-layout>
     <x-slot name="header">
-
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <i class="bi bi-briefcase"></i> {{ __('Messages') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
+        @include('layouts.messages')
         <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h1 class="p-3 text-black bg-gray-400">Messaging</h1>
-            </div>
-        </div>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    @if($cases->count()>0)
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-2 py-1">#</th>
+                                <th scope="col" class="px-2 py-1">Names</th>
+                                <th scope="col" class="px-2 py-1">Email</th>
+                                <th scope="col" class="px-2 py-1">User Type</th>
+                                <th scope="col" class="px-2 py-1"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($users as $user)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-2 py-1">{{$user->name}}</td>
+                                    <td class="px-2 py-1">{{$user->email}}</td>
+                                    <td class="px-2 py-1">{{$user->user_type}}</td>
+                                    <td class="px-2 py-1">
+                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-
-        <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="p-2">
-                        <x-input-label for="title" :value="__('Title')" />
-                        <x-text-input id="title"  class="block mt-1 w-full" type="text" name="title" :value="old('title')" />
-                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                    </div>
-
-                    <div class="p-2">
-                        <x-input-label for="file" :value="__('Upload File')" />
-                        <x-text-input id="file"  class="block mt-1 w-full" type="file" name="file" :value="old('file')" />
-                        <x-input-error :messages="$errors->get('file')" class="mt-2" />
-                    </div>
-
-                    <div class="flex items-center justify-end mt-4">
-
-                        <x-primary-button class="ml-4">
-                           {{'Submit'}}
-                        </x-primary-button>
-                    </div>
-
+                            </tbody>
+                        </table>
+                    @else
+                        <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-600 leading-tight">You Users Available</h4>
+                    @endif
                 </div>
+
             </div>
         </div>
+
 
     </div>
 </x-app-layout>

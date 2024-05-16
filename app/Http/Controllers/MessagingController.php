@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\OpenAIService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessagingController extends Controller
 {
@@ -23,6 +25,10 @@ class MessagingController extends Controller
 //        $response = $this->openai->generateText($prompt);
 //
 //        return response()->json(['response' => $response]);
+
+        $users = User::where('id', '!=', Auth::user()->id);
+        return view('messaging.index', compact('users'));
+
     }
 
     /**
