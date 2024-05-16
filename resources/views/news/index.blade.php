@@ -64,40 +64,44 @@
         <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="grid grid-cols-2 gap-2">
-                    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{asset('images/news1.png')}}" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">New Study Reveals Alarming Increase in Cybercrime Rates</h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><b>Summary:</b> A recently published study has unveiled a concerning surge in cybercrime rates worldwide. The study, conducted by a renowned cybersecurity research organization, analyzed data from various sources and identified a significant rise in cyberattacks across multiple sectors. The findings emphasize the critical need for individuals and organizations to enhance their cybersecurity measures to mitigate the growing risks. Published on: [Date]</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{asset('images/news3.png')}}" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{asset('images/news1.png')}}" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{asset('images/news3.png')}}" alt="">
-                        <div class="flex flex-col justify-between p-4 leading-normal">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                        </div>
-                    </a>
+                    @foreach($news as $new)
+                        <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{asset('images/news1.png')}}" alt="">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$new->title}}</h5>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><b>Summary:</b> {!! $new->summary !!}
+                                    <b>Published at:</b> {{$new->created_at}} </p>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
+                {{$news->links()}}
+            </div>
 
-
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="">
+                    <p class="mb-2 p-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Research Tool:</p>
+                    <div class="flex flex-col p-1 justify-between leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Westlaw:</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Westlaw is a comprehensive online legal research platform that offers access to an extensive collection of legal resources, including case law, statutes, regulations, secondary materials, and legal news. It provides powerful search capabilities and advanced features to facilitate efficient legal research. </p>
+                    </div>
+                    <div class="flex flex-col p-1 justify-between leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">LexisNexis::</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> LexisNexis is another widely used legal research tool that offers a vast database of legal materials, including court cases, statutes, legal publications, and news. It provides sophisticated search functionalities, citation analysis tools, and customizable alerts to keep lawyers updated on relevant legal developments. </p>
+                    </div>
+                    <div class="flex flex-col p-1 justify-between leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bloomberg Law:</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Bloomberg Law is a comprehensive legal research platform that combines legal research, news, and analysis. It offers access to a wide range of legal materials, including court cases, statutes, regulations, and secondary sources. It also provides news alerts, legal analysis, and practice tools tailored to specific legal practice areas. </p>
+                    </div>
+                    <div class="flex flex-col p-1 justify-between leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Fastcase:</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Fastcase is a user-friendly legal research tool that provides access to a large database of primary legal materials, including cases, statutes, regulations, and court rules. It offers powerful search capabilities, interactive visualizations, and advanced filtering options to help lawyers quickly find relevant legal information. </p>
+                    </div>
+                    <div class="flex flex-col p-1 justify-between leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Fastcase:</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Casetext is an innovative legal research platform that leverages artificial intelligence and machine learning technologies to enhance legal research efficiency. It offers a vast collection of case law, statutes, regulations, and secondary sources, along with AI-powered features such as CARA, an advanced legal research assistant.</p>
+                    </div>
+                </div>
             </div>
         </div>
 

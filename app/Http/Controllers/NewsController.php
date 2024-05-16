@@ -23,7 +23,8 @@ class NewsController extends Controller
 //        ]);
 //
 //      return  $result->choices[0]->message->content;
-        return view('news.index');
+        $news = News::paginate(3);
+        return view('news.index', compact('news'));
     }
 
     /**
