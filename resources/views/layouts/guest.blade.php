@@ -30,9 +30,18 @@
 
     </head>
     <body class="font-sans text-gray-900 antialiased">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{asset('images/law.jpg')}}" class="h-14" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E-LAWYERS APPLICATION</span>
+            </a>
+        </div>
+    </nav>
+
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <img src="{{asset('images/law.jpg')}}" alt="" srcset="">
                 {{ $slot }}
             </div>

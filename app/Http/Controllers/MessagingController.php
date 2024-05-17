@@ -21,12 +21,7 @@ class MessagingController extends Controller
 
     public function index()
     {
-//        $prompt = 'Hello';
-//        $response = $this->openai->generateText($prompt);
-//
-//        return response()->json(['response' => $response]);
-
-        $users = User::where('id', '!=', Auth::user()->id);
+        $users = User::where('id', '!=', Auth::user()->id)->get();
         return view('messaging.index', compact('users'));
 
     }
@@ -52,7 +47,8 @@ class MessagingController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('messaging.show', compact('user'));
     }
 
     /**

@@ -24,11 +24,12 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td class="px-2 py-1">{{$user->id}}</td>
                                     <td class="px-2 py-1">{{$user->name}}</td>
                                     <td class="px-2 py-1">{{$user->email}}</td>
                                     <td class="px-2 py-1">{{$user->user_type}}</td>
                                     <td class="px-2 py-1">
-                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Send Message</a>
                                     </td>
                                 </tr>
                             @endforeach
