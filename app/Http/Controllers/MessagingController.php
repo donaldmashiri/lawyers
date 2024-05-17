@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Messaging;
 use App\Models\User;
 use App\Services\OpenAIService;
 use Illuminate\Http\Request;
@@ -39,7 +40,21 @@ class MessagingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'receiver_id' => ['required'],
+            'message' => ['required'],
+            'document' => ['required', 'file'],
+        ]);
+
+        $documentPath = $request->document->store('public/documents');
+
+        $mssage = Messaging::create([
+            'receiver_id' => $request->receiver_id,
+            'message' => $request->message,
+            'document' => $request->document,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Message sent.');
     }
 
     /**
@@ -48,7 +63,11 @@ class MessagingController extends Controller
     public function show(string $id)
     {
         $user = User::findOrFail($id);
-        return view('messaging.show', compact('user'));
+        $messages = Messaging::where('receiver_id', $user->id)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+        return view('messaging.show', compact('user', 'messages'));
     }
 
     /**

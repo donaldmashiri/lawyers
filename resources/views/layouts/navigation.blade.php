@@ -42,16 +42,16 @@
                         </li>
 
                         <li class="me-2">
-                            <a href="{{ route('messaging.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-chat-dots"> Request Lawyer </i>
+                            <a href="{{ route('requests.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-chat"> Request Lawyer </i>
                             </a>
                         </li>
 
-{{--                        <li class="me-2">--}}
-{{--                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">--}}
-{{--                                <i class="bi bi-flask"> AI Research </i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        <li class="me-2">
+                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-flask"> AI Research </i>
+                            </a>
+                        </li>
                     </ul>
 
 
