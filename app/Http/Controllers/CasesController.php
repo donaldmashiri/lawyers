@@ -14,7 +14,9 @@ class CasesController extends Controller
      */
     public function index()
     {
-        $cases = Cases::where('user_id', auth()->user()->id)->get();
+        $cases = Cases::where('user_id', auth()->user()->id)
+            ->orWhere('user_id', null)
+            ->get();
         return view('cases.index', compact('cases'));
 
     }

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('customer_requests', function (Blueprint $table) {
             $table->id();
+            $table->integer('lawyer_id');
             $table->integer('user_id');
-            $table->string('type');
             $table->text('details');
+            $table->string('payment')->default('pending');
             $table->timestamps();
         });
     }

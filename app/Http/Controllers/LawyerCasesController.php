@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LawyerCasesController extends Controller
@@ -11,7 +13,8 @@ class LawyerCasesController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where('user_type', 'lawyer')->get();
+        return view('lawyer-cases.index', compact('users'));
     }
 
     /**
@@ -35,7 +38,17 @@ class LawyerCasesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $lawyer = User::findOrFail($id);
+        if ($lawyer->user_type !== 'lawyer') {
+            return abort(404, 'User is not a lawyer');
+        }
+
+        $cases = Cases::where('user_id', $lawyer->id)
+            ->orWhereNull('user_id')
+            ->get();
+
+        return view('lawyer-cases.show', compact('lawyer', 'cases'));
+
     }
 
     /**

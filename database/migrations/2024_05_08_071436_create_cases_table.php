@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('client_contact');
             $table->string('case_status')->default('pending');
             $table->dateTime('case_deadline');
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

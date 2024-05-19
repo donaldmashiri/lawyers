@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <i class="bi bi-briefcase"></i> {{ __('Request Lawyer') }}
+            <i class="bi bi-briefcase"></i> {{ __('Lawyer Cases') }}
         </h2>
     </x-slot>
 
@@ -29,8 +29,7 @@
                                     <td class="px-2 py-1">{{$user->email}}</td>
                                     <td class="px-2 py-1">{{$user->user_type}}</td>
                                     <td class="px-2 py-1">
-                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Request</a>
-                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium btn btn-secondary btn-sm text-white-500 dark:text-blue-500 hover:underline">Video Conferencing</a>
+                                        <a href="{{route('lawyer-cases.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Cases</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -38,7 +37,7 @@
                             </tbody>
                         </table>
                     @else
-                        <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-600 leading-tight">You Users Available</h4>
+                        <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-600 leading-tight">No Lawyers Available</h4>
                     @endif
                 </div>
 
