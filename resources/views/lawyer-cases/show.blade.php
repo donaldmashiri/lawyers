@@ -78,6 +78,36 @@
                             </a>
                         </h4>
 
+                        @if($customer_requests->count()>0)
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-2 py-1">#</th>
+                                    <th scope="col" class="px-2 py-1">details</th>
+                                    <th scope="col" class="px-2 py-1">Payments</th>
+                                    <th scope="col" class="px-2 py-1">Date</th>
+                                    <th scope="col" class="px-2 py-1"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customer_requests as $data)
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <td class="px-2 py-1">{{$data->id}}</td>
+                                        <td class="px-2 py-1">{!! $data->details !!}</td>
+                                        <td class="px-2 py-1">{{$data->payment}}</td>
+                                        <td class="px-2 py-1">{{$data->created_at}}</td>
+                                        <td class="px-2 py-1">
+                                            <a href="" class="btn btn-primary btn-sm">Pay</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        @else
+                            <h4 class="p-2 font-semibold text-xl text-white text-center bg-red-600 leading-tight">You Have No Cases Added</h4>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -102,7 +132,7 @@
                             <input type="hidden" name="lawyer_id" value="{{$lawyer->id}}">
                             <div class="mt-2">
                                 <x-input-label for="details" :value="__('Enter Details')" />
-                                <input id="details" type="hidden" name="case_ruling">
+                                <input id="details" type="hidden" name="details">
                                 <trix-editor input="details"></trix-editor>
                                 <x-input-error :messages="$errors->get('case_ruling')" class="mt-2" />
                             </div>

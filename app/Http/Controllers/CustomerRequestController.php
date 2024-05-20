@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerRequest;
+use App\Models\Messaging;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,17 @@ class CustomerRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lawyer_id' => ['required'],
+            'details' => ['required'],
+        ]);
+
+        $request = CustomerRequest::create([
+            'lawyer_id' => $request->lawyer_id,
+            'details' => $request->details,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Message sent.');
     }
 
     /**

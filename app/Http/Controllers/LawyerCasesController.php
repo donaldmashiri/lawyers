@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cases;
+use App\Models\CustomerRequest;
+use App\Models\Messaging;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LawyerCasesController extends Controller
 {
@@ -47,7 +50,13 @@ class LawyerCasesController extends Controller
             ->orWhereNull('user_id')
             ->get();
 
-        return view('lawyer-cases.show', compact('lawyer', 'cases'));
+        $customer_requests = CustomerRequest::where('lawyer_id', $lawyer->id)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+
+
+        return view('lawyer-cases.show', compact('lawyer', 'cases', 'customer_requests'));
 
     }
 
