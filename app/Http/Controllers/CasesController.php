@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CaseRuling;
 use App\Models\Cases;
+use App\Models\Research;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -71,7 +72,9 @@ class CasesController extends Controller
                     ->orWhere('case_description', 'LIKE', '%' . $case->case_description . '%');
             })
             ->get();
-        return view('cases.show', compact('case', 'caseRulings', 'caseResearches'));
+
+        $researches = Research::where('type', 'LIKE', '%' . $case->case_type . '%') ->get();
+        return view('cases.show', compact('case', 'caseRulings', 'caseResearches', 'researches'));
     }
 
     /**

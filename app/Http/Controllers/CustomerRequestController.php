@@ -41,7 +41,7 @@ class CustomerRequestController extends Controller
             'details' => $request->details,
             'user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Message sent.');
+        return redirect()->back()->with('success', 'Request Successfully Sent.');
     }
 
     /**
@@ -63,9 +63,13 @@ class CustomerRequestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CustomerRequest $customerRequest)
+    public function update(Request $request, string $id)
     {
-        //
+        $customerRequest = CustomerRequest::findOrFail($id);
+
+        $customerRequest->update(['payment' => 'paid']);
+
+        return redirect()->back()->with('success', 'Payment was Successfully.');
     }
 
     /**

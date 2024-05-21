@@ -18,11 +18,13 @@
                     </x-nav-link>
 
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                        @if(Auth::user()->user_type === 'lawyer')
                         <li class="me-2">
                             <a href="{{ route('cases.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
                                 <i class="bi bi-briefcase"> Cases </i>
                             </a>
                         </li>
+                        @endif
                         <li class="me-2">
                             <a href="{{ route('news.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
                                 <i class="bi bi-newspaper">  News </i>
@@ -52,12 +54,17 @@
                                 <i class="bi bi-chat">Lawyer Cases</i>
                             </a>
                         </li>
-
-                        <li class="me-2">
-                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-flask"> AI Research </i>
+                            <li class="me-2">
+                            <a href="{{ route('report.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-chat">Reports</i>
                             </a>
                         </li>
+
+{{--                        <li class="me-2">--}}
+{{--                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">--}}
+{{--                                <i class="bi bi-flask"> AI Research </i>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
 
 

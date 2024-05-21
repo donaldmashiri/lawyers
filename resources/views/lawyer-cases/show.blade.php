@@ -94,11 +94,54 @@
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <td class="px-2 py-1">{{$data->id}}</td>
                                         <td class="px-2 py-1">{!! $data->details !!}</td>
-                                        <td class="px-2 py-1">{{$data->payment}}</td>
+                                        <td class="px-2 py-1">{{$data->payment}}
+                                            <br>
+                                        @if($data->payment === 'paid')
+                                                <!-- join_zoom_meeting.blade.php -->
+                                                <a href="https://zoom.us/j/99798397225?pwd=eE4zcGorMU1oU3R6TDZwMUd1QnVGUT09" class="text-red-500" target="_blank">Video Conference Meeting Link</a>
+
+                                            @endif
+                                        </td>
                                         <td class="px-2 py-1">{{$data->created_at}}</td>
                                         <td class="px-2 py-1">
-                                            <a href="" class="btn btn-primary btn-sm">Pay</a>
+                                            <form id="payment-form-{{ $data->id }}" action="{{ route('requests.update', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="payment" value="paid">
+                                                <button type="submit" id="paynow-button-{{ $data->id }}">
+                                                    <img src="https://www.paynow.co.zw/Content/Buttons/Medium_buttons/button_pay-now_medium.png" style="border:0" />
+                                                </button>
+                                            </form>
                                         </td>
+
+                                        <script>
+                                            document.getElementById('payment-form-{{ $data->id }}').addEventListener('submit', function(event) {
+                                                event.preventDefault(); // Prevent the default form submission
+
+                                                const form = event.target;
+                                                const formData = new FormData(form);
+
+                                                fetch(form.action, {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': formData.get('_token')
+                                                    },
+                                                    body: formData
+                                                })
+                                                    .then(response => {
+                                                        if (response.ok) {
+                                                            // If the update was successful, open the Paynow link in a new tab
+                                                            window.open('https://www.paynow.co.zw/Payment/Link/?q=c2VhcmNoPWRvbmFsZHRvbmRlbWFzaGlyaSU0MGdtYWlsLmNvbSZhbW91bnQ9MS4wMCZyZWZlcmVuY2U9bGF5d2VyJmw9MQ%3d%3d', '_blank');
+                                                        } else {
+                                                            // Handle the error if the update failed
+                                                            alert('Failed to update payment status.');
+                                                        }
+                                                    })
+                                                    .catch(error => console.error('Error:', error));
+                                            });
+                                        </script>
+
+
                                     </tr>
                                 @endforeach
 
