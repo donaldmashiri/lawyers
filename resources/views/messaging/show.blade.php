@@ -53,17 +53,16 @@
                             <div class="col-md-12">
                                 <div class="chat-box">
                                     @foreach($messages as $message)
-                                        <p>{{ $message->message }}</p>sd
                                         @if($message->user_id == Auth::user()->id)
-                                            <div class="message right-message">
+                                            <div class="message right-message bg-secondary p-3">
                                                 <p>{{ $message->message }}</p>
                                                 <span class="message-info">{{ $message->created_at }}</span>
                                             </div>
                                         @else
-                                            <div class="message left-message">
-                                                <p>{{ $message->message }}</p>
-                                                <span class="message-info">{{ $message->created_at }}</span>
-                                            </div>
+{{--                                            <div class="message left-message">--}}
+{{--                                                <p>{{ $message->message }}</p>--}}
+{{--                                                <span class="message-info">{{ $message->created_at }}</span>--}}
+{{--                                            </div>--}}
                                         @endif
                                     @endforeach
                                 </div>

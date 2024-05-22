@@ -56,7 +56,7 @@
                                         <td class="py-3 px-4">{{$pendingCount}}</td>
                                     </tr>
                                     <tr class="border-t text-sm">
-                                        <td class="py-3 px-4"><i class="fas fa-star text-info"></i>Pending Cases</td>
+                                        <td class="py-3 px-4"><i class="fas fa-star text-info"></i>Auctioned Cases</td>
                                         <td class="py-3 px-4">{{$auctionedsCount}}</td>
                                     </tr>
                                     </tbody>

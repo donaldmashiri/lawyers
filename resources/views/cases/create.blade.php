@@ -79,7 +79,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         flatpickr('#case_deadline', {
-            enableTime: true
+            // enableTime: true
         });
     </script>
 
