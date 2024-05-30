@@ -14,7 +14,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" >
-                        <h2>{{ __('Electronic lawyers System') }}</h2>
+                        <h2>{{ __('Profile') }}</h2>
                     </x-nav-link>
 
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

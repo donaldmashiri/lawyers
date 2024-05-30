@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('lawyer-cases', \App\Http\Controllers\LawyerCasesController::class);
     Route::resource('reports', \App\Http\Controllers\ReportController::class);
 
+
 });
+
+Route::resource('customers', \App\Http\Controllers\CustomerController::class);
 
 require __DIR__.'/auth.php';
