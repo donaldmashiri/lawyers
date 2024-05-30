@@ -42,16 +42,13 @@ class MessagingController extends Controller
     {
         $request->validate([
             'receiver_id' => ['required'],
-            'message' => ['required'],
-            'document' => ['required', 'file'],
+            'message' => ['required', 'min:3'],
         ]);
 
-        $documentPath = $request->document->store('public/documents');
 
         $mssage = Messaging::create([
             'receiver_id' => $request->receiver_id,
             'message' => $request->message,
-            'document' => $request->document,
             'user_id' => auth()->user()->id,
         ]);
         return redirect()->back()->with('success', 'Message sent.');

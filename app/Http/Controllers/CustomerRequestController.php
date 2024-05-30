@@ -33,7 +33,7 @@ class CustomerRequestController extends Controller
     {
         $request->validate([
             'lawyer_id' => ['required'],
-            'details' => ['required'],
+            'details' => ['required', 'min:3'],
         ]);
 
         $request = CustomerRequest::create([

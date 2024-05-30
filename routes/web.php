@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('requests', \App\Http\Controllers\CustomerRequestController::class);
     Route::resource('lawyer-cases', \App\Http\Controllers\LawyerCasesController::class);
     Route::resource('reports', \App\Http\Controllers\ReportController::class);
+    Route::resource('directories', \App\Http\Controllers\DirectoryController::class);
 
 
 });

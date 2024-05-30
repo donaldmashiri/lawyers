@@ -12,7 +12,8 @@ class DirectoryController extends Controller
      */
     public function index()
     {
-        //
+        $directories = Directory::all();
+        return view('directories.index', compact('directories'));
     }
 
     /**
@@ -28,7 +29,19 @@ class DirectoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'min:3'],
+            'document' => ['required', 'file'],
+        ]);
+
+        $documentPath = $request->document->store('public/documents');
+
+        $mssage = Directory::create([
+            'title' => $request->title,
+            'document' => $request->document,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Directory Added.');
     }
 
     /**

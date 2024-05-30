@@ -32,7 +32,7 @@ class CaseRulingController extends Controller
         $request->validate([
             'cases_id' => ['required'],
             'case_ruling' => ['required'],
-            'case_results' => ['required']
+            'case_results' => ['required', 'min:5']
         ]);
 
         $data = CaseRuling::create([

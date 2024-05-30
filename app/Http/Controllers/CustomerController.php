@@ -30,12 +30,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'date_of_birth' => 'required|date|before:' . \Carbon\Carbon::now()->subYears(18)->format('Y-m-d'),
+            'name' => 'required|min:3|string|max:255',
+            'email' => 'required|min:3|string|email|max:255|unique:users',
+            'date_of_birth' => 'required|min:3|date|before:' . \Carbon\Carbon::now()->subYears(18)->format('Y-m-d'),
             'gender' => 'required|string|in:male,female',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|numeric',
+            'address' => 'required|min:3|string|max:255',
+            'phone' => 'required|min:6|numeric',
             'password' => 'required|string|min:8|confirmed',
         ]);
 

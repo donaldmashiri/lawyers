@@ -19,52 +19,48 @@
 
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                         @if(Auth::user()->user_type === 'lawyer')
+                            <li class="me-2">
+                                <a href="{{ route('cases.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                    <i class="bi bi-folder"> Cases </i>
+                                </a>
+                            </li>
+                        @endif
+
                         <li class="me-2">
-                            <a href="{{ route('cases.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-briefcase"> Cases </i>
+                            <a href="{{ route('directories.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-list-ul"> Directories </i>
                             </a>
                         </li>
-                        @endif
+
                         <li class="me-2">
                             <a href="{{ route('news.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-newspaper">  News </i>
+                                <i class="bi bi-newspaper"> News </i>
                             </a>
                         </li>
 
                         <li class="me-2">
                             <a href="{{ route('testimonials.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-chat-right-dots"> Testimonials</i>
+                                <i class="bi bi-chat-right-quote"> Testimonials</i>
                             </a>
                         </li>
 
                         <li class="me-2">
                             <a href="{{ route('messaging.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-chat-dots"> Messaging </i>
+                                <i class="bi bi-chat-left-dots"> Messaging </i>
                             </a>
                         </li>
-
-{{--                        <li class="me-2">--}}
-{{--                            <a href="{{ route('requests.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">--}}
-{{--                                <i class="bi bi-chat"> Request Lawyer </i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
 
                         <li class="me-2">
                             <a href="{{ route('lawyer-cases.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-chat">Lawyer Cases</i>
-                            </a>
-                        </li>
-                            <li class="me-2">
-                            <a href="{{ route('reports.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-                                <i class="bi bi-chat">Reports</i>
+                                <i class="bi bi-briefcase"> Lawyer Cases</i>
                             </a>
                         </li>
 
-{{--                        <li class="me-2">--}}
-{{--                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">--}}
-{{--                                <i class="bi bi-flask"> AI Research </i>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        <li class="me-2">
+                            <a href="{{ route('reports.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-bar-chart"> Reports</i>
+                            </a>
+                        </li>
                     </ul>
 
 

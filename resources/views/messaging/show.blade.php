@@ -24,16 +24,16 @@
                                     <x-input-error :messages="$errors->get('message')" class="mt-2" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="p-2">
-                                    <x-input-label for="document" :value="__('Upload File')" />
-                                    <x-text-input id="document"  class="block mt-1 w-full" type="file" name="document" :value="old('file')" />
-                                    <x-input-error :messages="$errors->get('document')" class="mt-2" />
-                                </div>
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="p-2">--}}
+{{--                                    <x-input-label for="document" :value="__('Upload File')" />--}}
+{{--                                    <x-text-input id="document"  class="block mt-1 w-full" type="file" name="document" :value="old('file')" />--}}
+{{--                                    <x-input-error :messages="$errors->get('document')" class="mt-2" />--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
-                        <div class="flex items-center justify-end mt-4">
+                        <div class=" mt-4">
 
                             <x-primary-button class="ml-4">
                                 {{'Send'}}
@@ -51,21 +51,43 @@
                     <div class="p-6 text-gray-900">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="chat-box">
-                                    @foreach($messages as $message)
-                                        @if($message->user_id == Auth::user()->id)
-                                            <div class="message right-message bg-secondary p-3">
-                                                <p>{{ $message->message }}</p>
-                                                <span class="message-info">{{ $message->created_at }}</span>
+                                <div class="card">
+                                    <div class="card-body">
+                                        @foreach ($messages as $message)
+                                            <div class="d-flex align-items-start mb-3 border border-r-amber-100 p-3">
+                                                <div class="me-2">
+                                                    @if ($message->user->user_type == 'lawyer')
+                                                        <img src="{{ asset('images/lawyer.png') }}" alt="User Avatar" class="rounded-circle" style="width: 30px; height: 30px;">
+                                                    @else
+                                                        <img src="{{ asset('images/customer.png') }}" alt="User Avatar" class="rounded-circle" style="width: 30px; height: 30px;">
+                                                    @endif
+
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold">
+                                                            {{ $message->user->name }}
+                                                    </div>
+                                                    <div>
+                                                            {{ $message->message }}
+                                                    </div>
+                                                    <div class="text-muted" style="font-size: 0.8rem;">{{ $message->created_at->format('d M Y, h:i A') }}</div>
+                                                </div>
                                             </div>
-                                        @else
-{{--                                            <div class="message left-message">--}}
+                                        @endforeach
+                                    </div>
+                                </div>
+
+
+{{--                                <div class="chat-box">--}}
+{{--                                    @foreach($messages as $message)--}}
+{{--                                            <div class="message right-message bg-secondary p-3">--}}
+{{--                                                <p>{{ $message->user->name }}</p>--}}
 {{--                                                <p>{{ $message->message }}</p>--}}
 {{--                                                <span class="message-info">{{ $message->created_at }}</span>--}}
 {{--                                            </div>--}}
-                                        @endif
-                                    @endforeach
-                                </div>
+
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
                             </div>
 
 

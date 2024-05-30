@@ -5,20 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Messaging extends Model
+class Testimonial extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'receiver_id',
-        'message',
-        'document',
+        'case_type',
+        'case_description',
         'user_id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
@@ -11,7 +13,9 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        return view('testimonials.index');
+        $testimonials = Testimonial::all();
+        $cases = Cases::where('case_status', '=!', 'pending');
+        return view('testimonials.index', compact('cases', 'testimonials'));
     }
 
     /**
@@ -19,7 +23,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        return view('testimonials.create');
     }
 
     /**
@@ -27,7 +31,19 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'case_type' => ['required', 'min:3'],
+            'case_description' => ['required', 'min:3'],
+        ]);
+
+
+
+        $mssage = Testimonial::create([
+            'case_type' => $request->case_type,
+            'case_description' => $request->case_description,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Testimonial Added.');
     }
 
     /**

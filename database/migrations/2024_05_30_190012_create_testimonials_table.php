@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('directories', function (Blueprint $table) {
+        Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->text('document');
+            $table->string('case_type');
+            $table->text('case_description');
             $table->integer('user_id');
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('directories');
+        Schema::dropIfExists('testimonials');
     }
 };

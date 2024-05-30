@@ -41,9 +41,9 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'news_type' => ['required'],
-            'title' => ['required'],
-            'summary' => ['required'],
+            'news_type' => ['required', 'min:3'],
+            'title' => ['required', 'min:3'],
+            'summary' => ['required', 'min:3'],
         ]);
 
         $data = News::create([

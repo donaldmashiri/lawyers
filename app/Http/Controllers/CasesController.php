@@ -37,9 +37,9 @@ class CasesController extends Controller
     {
         $request->validate([
             'case_type' => ['required'],
-            'case_description' => ['required'],
-            'client_name' => ['required'],
-            'client_contact' => ['required'],
+            'case_description' => ['required', 'min:3'],
+            'client_name' => ['required', 'min:3'],
+            'client_contact' => ['required', 'min:3'],
             'case_deadline' => ['required', 'date'],
             'case_document' => ['required', 'file', 'mimes:pdf,doc,docx'],
         ]);
