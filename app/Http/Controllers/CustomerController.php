@@ -35,7 +35,7 @@ class CustomerController extends Controller
             'date_of_birth' => 'required|min:3|date|before:' . \Carbon\Carbon::now()->subYears(18)->format('Y-m-d'),
             'gender' => 'required|string|in:male,female',
             'address' => 'required|min:3|string|max:255',
-            'phone' => 'required|min:6|numeric',
+            'phone' => 'required|min:7|numeric',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
