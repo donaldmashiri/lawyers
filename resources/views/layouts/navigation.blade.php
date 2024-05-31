@@ -61,6 +61,13 @@
                                 <i class="bi bi-bar-chart"> Reports</i>
                             </a>
                         </li>
+
+                            <li class="me-2">
+                            <a href="{{ route('research.index') }}" class="inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
+                                <i class="bi bi-bar-chart"> AI Research</i>
+                            </a>
+                        </li>
+
                     </ul>
 
 

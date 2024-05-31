@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <i class="bi bi-briefcase"></i> {{ __('Messages') }}
+            <i class="bi bi-briefcase"></i> {{ __('Video Conferencing') }}
         </h2>
     </x-slot>
 
@@ -29,10 +29,7 @@
                                     <td class="px-2 py-1">{{$user->email}}</td>
                                     <td class="px-2 py-1">{{$user->user_type}}</td>
                                     <td class="px-2 py-1">
-                                        <a href="{{route('messaging.show', $user->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Send Message</a>
-                                    </td>
-                                    <td class="px-2 py-1">
-                                        <a target="_blank" href="https://zoom.us/j/99798397225?pwd=eE4zcGorMU1oU3R6TDZwMUd1QnVGUT09" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Conferencing Link</a>
+                                        <a href="https://zoom.us/j/99798397225?pwd=eE4zcGorMU1oU3R6TDZwMUd1QnVGUT09" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Conferencing Link</a>
                                     </td>
                                 </tr>
                             @endforeach

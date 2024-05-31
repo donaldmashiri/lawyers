@@ -14,33 +14,39 @@
         <div class="max-w-7xl mx-auto sm:px-3 lg:px-3">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="p-2">
-                        <x-input-label for="case_type" :value="__('Case Type')" />
-                        <select name="case_type" id="case_type" class="block mt-1 p-2.5 w-full text-sm  rounded-lg border border-gray-300" >
-                            <option value="">Contract disputes</option>
-                            <option value="">Criminal cases</option>
-                            <option value="">Bankruptcy</option>
-                            <option value="">Personal injury</option>
-                            <option value="">Property law</option>
-                            <option value="">Family law</option>
-                        </select>
-                        <x-input-error :messages="$errors->get('case_type')" class="mt-2" />
-                    </div>
+                    <form action="{{ route('research.index') }}" method="get">
+                        @csrf
+                        <div class="p-2">
+                            <label for="case_type">{{ __('Case Type') }}</label>
+                            <input type="text" name="search" class="form-group form-control">
+                            @if($errors->has('search'))
+                                <span class="mt-2">{{ $errors->first('search') }}</span>
+                            @endif
+                        </div>
 
-                    <div class="p-2">
-                        <x-input-label for="contents" :value="__('Content')" />
-                        <input id="contents" value="{{ isset($post) ? $post->title : ''}}" type="hidden" name="contents">
-                        <trix-editor input="contents"></trix-editor>
-                        <x-input-error :messages="$errors->get('contents')" class="mt-2" />
-                    </div>
+                        <div class="flex items-center justify-end mt-4">
+                            <button type="submit" class="btn btn-dark text-dark ml-4">
+                                {{ __('Get Help') }}
+                            </button>
+                        </div>
+                    </form>
 
-                    <div class="flex items-center justify-end mt-4">
-
-                        <x-primary-button class="ml-4">
-                            {{'Get Help'}}
-                        </x-primary-button>
-                    </div>
-
+                    @if(isset($search))
+                        @if($results->isNotEmpty())
+                            <div class="mt-4">
+                                <h2>{{ __('Search Results') }}</h2>
+                                <ul>
+                                    @foreach($results as $result)
+                                        <li>{{ $result->type }} - {{ $result->details }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <div class="mt-4">
+                                <p class="alert alert-danger">{{ __('This is not related to Law.') }}</p>
+                            </div>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

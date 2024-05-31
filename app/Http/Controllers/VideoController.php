@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Research;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AIResearchController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
-
-        // Initialize the results variable as an empty collection
-        $results = collect();
-
-        if (!empty($search)) {
-            // Perform search query if search input is not empty
-            $results = Research::where('type', 'like', '%' . $search . '%')
-                ->orWhere('details', 'like', '%' . $search . '%')
-                ->get();
-        }
-
-        // Return the view with the search results
-        return view('research.index', compact('results', 'search'));
+        $users = User::where('user_type',  'lawyer')->get();
+        return view('videos.index', compact('users'));
     }
-
 
     /**
      * Show the form for creating a new resource.
