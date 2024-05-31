@@ -4,7 +4,7 @@
 
 <div class="container pb-3">
     <div class="row">
-        <h5 class="card-header">Student Registration</h5>
+        <h5 class="card-header">Lawyer Registration</h5>
         <div class="card-body">
             @include('layouts.messages')
             <form method="POST" action="{{ route('register') }}">
